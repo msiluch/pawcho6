@@ -1,11 +1,16 @@
+# syntax=docker/dockerfile:1.4
+
 FROM golang:1.22-alpine AS builder
 
 WORKDIR /laboratorium_5
-COPY main.go .
 
-RUN go mod init lab5
+RUN apk add --no-cache git openssh-client
+
+RUN --mount=type=ssh git clone git@github.com:msiluch/pawcho6.git .
 
 ARG VERSION=1.0
+
+RUN go mod init lab6 || true
 
 RUN CGO_ENABLED=0 go build -ldflags="-X main.version=$VERSION" -o aplikacja
 
