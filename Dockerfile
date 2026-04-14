@@ -30,3 +30,5 @@ EXPOSE 80 8080
 
 HEALTHCHECK --interval=10s --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
+  
+LABEL org.opencontainers.image.source=https://github.com/msiluch/pawcho6  
