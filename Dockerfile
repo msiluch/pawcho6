@@ -6,6 +6,8 @@ WORKDIR /laboratorium_5
 
 RUN apk add --no-cache git openssh-client
 
+RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+
 RUN --mount=type=ssh git clone git@github.com:msiluch/pawcho6.git .
 
 ARG VERSION=1.0
